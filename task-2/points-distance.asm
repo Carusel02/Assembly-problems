@@ -22,49 +22,57 @@ points_distance:
    
     ;; Your code starts here
     
-    
+    ;; bagam cele 4 puncte (coord x y pt primul si al doilea)
     mov cl, [ebx + point.x]
     mov ch, [ebx + point.y]
     mov dl, [ebx + 4 + point.x]
     mov dh, [ebx + 4 + point.y]
+    
+    ;; vedem care coordonate sunt egale (stim ca sunt pe aceeasi dreapta)
 
+    ;; comparam coordonatele x
     cmp cl, dl
     je zone1
     
+    ;; comparam coordonatele y
     cmp ch, dh
     je zone2
 
 
 zone1:
-    ;;PRINTF32 `merge zone1!\n\x0`
+    ;; verificam care y e mai mare
     cmp ch, dh
     jl zone1_secundary
     sub ch, dh
     
+    ;; stocam
     jmp final1
 
 zone1_secundary:
-    ;;PRINTF32 `merge zone1_sec!\n\x0`
+    ;; scadem
     sub dh, ch
     
+    ;; stocam
     jmp final2
 
 zone2:
-    ;;PRINTF32 `merge zone2!\n\x0`
+    ;; verificam care x e mai mare
     cmp cl, dl
     jl zone2_secundary
     sub cl, dl
     
+    ;; stocam
     jmp final3
 
 zone2_secundary:
     ;;PRINTF32 `merge zone2_sec!\n\x0`
     sub dl, cl
     
+    ;; stocam
     jmp final4
 
 final1:
-    ;;PRINTF32 `merge f1\n\x0`
+    ;; facem un clean in eax de siguranta
     xor eax,eax
     mov eax, [ebp + 12]     ; distance
     
@@ -72,7 +80,6 @@ final1:
     jmp final
 
 final2:
-    ;;PRINTF32 `merge f2!\n\x0`
     xor eax,eax
     mov eax, [ebp + 12]     ; distance
 
@@ -80,7 +87,6 @@ final2:
     jmp final
 
 final3:
-    ;;PRINTF32 `merge f3!\n\x0`
     xor eax,eax
     mov eax, [ebp + 12]     ; distance
     
@@ -88,7 +94,6 @@ final3:
     jmp final
 
 final4:
-    ;;PRINTF32 `merge f4!\n\x0`
     xor eax,eax
     mov eax, [ebp + 12]     ; distance
     
@@ -96,8 +101,7 @@ final4:
     jmp final
 
 final:
-    ;;PRINTF32 `%hu\n\x0`, [eax]
-
+    ;; facem un clean la toate de siguranta
     xor cl,cl
     xor ch,ch
     xor dl,dl

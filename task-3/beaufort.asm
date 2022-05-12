@@ -21,78 +21,81 @@ beaufort:
     ;; TODO: Implement spiral encryption
     ;; FREESTYLE STARTS HERE
     
-     ;; pop edi
-     ;; sub edi, 1
-     ;; PRINTF32 `%d\n\x0`, edi
-     ;; push edi
+    ;; OMAGA FREESTYLEEEE
 
-    
+    ;; bagam in stiva ecx (lungime key)
     push ecx
+
     mov ecx, eax
     xor eax, eax
 
 zone: 
      xor al,al ; clean
      xor ah,ah ; clean
-
+     
+     ;; luam litera plain
      mov     al, [ebx]
      add     ebx, 1
-
+     
+     ;; luam litera key
      mov     ah, [edx]
      add     edx, 1
      
+     ;; vedem care e mai mare
      cmp     al, ah
-     jle      encode2
+     jle     encode2
      
-
-
-
 encode1:
-     ;; PRINTF32 `encode1\n\x0`
+     ;; am folosit un algoritm, nu matricea taburet
+     ;; se scade din 26 (nr total) diferenta dintre cele 2
+     ;; si apoi se adauga 65
      add     ah, 26
      sub     ah, al
      add     ah, 65
      
+     ;; se baga in partea encoded
      mov     [esi], ah
      add     esi, 1
      jmp     final
      
 encode2:
-     ;; PRINTF32 `encode2\n\x0`
+     ;; algoritmul difera daca litera din plain < litera key
+     ;; se afla diferenta dintre cele 2 si se adauga 65
      sub     ah, al
      add     ah, 65
-
+     
+     ;; se baga in partea encoded
      mov     [esi], ah
      add     esi, 1
      jmp     final
 
 final:
      
+     ;; vedem daca s a terminat key ul 
      pop      edi
      sub      edi, 1
      push     edi
-
+     
+     ;; daca da, intram in zona refresh
      cmp      edi, 0
      je       refresh
-
+     
+     ;; daca nu, facem iar loop ul
      jmp      repeat
 
 refresh:
-     ;; PRINTF32 `refresh\n\x0`
+     ;; modificam valoarea cu adresa initiala key + len key
      mov      edx, [ebp + 20]
      pop      edi
      mov      edi, [ebp + 16]
      push     edi
 
-
-
 repeat:
-
+     ;; repetare iar loop
 loop zone
-
-    pop ecx
     
-
+    ;; restauram stiva cu pop
+    pop ecx
 
     ;; FREESTYLE ENDS HERE
     ;; DO NOT MODIFY

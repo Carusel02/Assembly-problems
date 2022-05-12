@@ -22,28 +22,27 @@ road:
    
     ;; Your code starts here
     
-    ;; PRINTF32 `ADRESA EBX: %p\n\x0`, ebx
-    ;; PRINTF32 `ADRESA DIN EBX: %p\n\x0`, [ebx]
+    ;; scadem 1 (len ul e mai mic cu 1)
     sub ecx, 1
 
-    zone:
-    
+zone:
+    ;; apelam functia, punem parametrii in ordine inversa pe stiva    
     push ebx
     push eax
     
+    ;; !! CLEAN OBLIGATORIU !! deoarece avem garbage pe adresele de distante
     mov dword [ebx], 0
+    ;; apelam functia
     extern points_distance
     call points_distance
+    ;; modificam varful stivei
     add esp, 8
     
-    ;; PRINTF32 `adresa : %p\n\x0`, ebx
-    ;; PRINTF32 `valoare: %hu\n\x0`, [ebx]
-    
+    ;; trecem la urmatorul set de puncte
     add eax, 4
     add ebx, 4
     
-    
-
+    ;; facem asta de ecx ori 
     loop zone
 
     ;; sub ebx, 4

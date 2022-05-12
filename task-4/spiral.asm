@@ -19,25 +19,30 @@ spiral:
     ;; TODO: Implement spiral encryption
     ;; FREESTYLE STARTS HERE
     
+    ;; OMAGA FREESTYLEEEEE
 
+    ;; avem nevoie de stiva xd
     push  ecx
     push  eax
     
-
-
+    ;; parcurgem matricea de n^2 ori
     mov   esi, eax
     mov   edi, eax
     mul   edi
-    
+       
     mov   edx, [ebp + 20]
     mov   ecx, eax
-
+    
+    ;; facem clean de siguranta
     xor edi, edi
     xor eax, eax
     xor esi, esi
 
-    ;; PRINTF32 `%d\n\x0`, ecx
-    
+    ;; formez index in ordine spirala
+    ;; pt matrice 3x3 ordinea indexilor ar fi
+    ;; 1 2 3 6 9 8 7 4 5
+
+;; parcurgere linie sus matrice
 case1: 
     ;; conditie iesire
     cmp    ecx, 0
@@ -71,6 +76,7 @@ case1:
    
     jmp    case1
 
+;; parcurgere linie dreapta matrice
 case2:
     ;; conditie iesire
     cmp    ecx, 0
@@ -104,6 +110,7 @@ case2:
 
     jmp    case2
 
+;; parcurgere linie stanga matrice
 case3:
     ;; conditie iesire
     cmp    ecx, 0
@@ -137,6 +144,7 @@ case3:
 
     jmp    case3
 
+;; parcurgere linie sus matrice
 case4:
     ;; conditie iesire
     cmp    ecx, 0
@@ -171,8 +179,12 @@ case4:
     jmp    case4
 
 
+    ;; nr de pasi scade pe parcurs deoarece parcurgerea
+    ;; in spirala devine din ce in ce mai "mica"
+
+    ;; facem clean la nr pasi + actualizam nr pasi pt fiecare case
+
 saritura1:
-    ;; PRINTF32 `\n\x0`
     pop   eax
     sub   eax, 1
     push  eax
@@ -180,12 +192,10 @@ saritura1:
     jmp   case2
 
 saritura2:
-    ;; PRINTF32 `\n\x0`
     xor   esi, esi
     jmp   case3
 
 saritura3:
-    ;; PRINTF32 `\n\x0`
     pop   eax
     sub   eax, 1
     push  eax
@@ -193,19 +203,16 @@ saritura3:
     jmp   case4
 
 saritura4:
-    ;; PRINTF32 `\n\x0`
     xor   esi, esi
     jmp   case1
 
-
 point:
-    ;; PRINTF32 `\n\x0`
+    ;; zona de final
 
+    ;; scoatem dupa stiva ce am bagat
     pop   eax
     pop   ecx
 
-    
- 
     ;; FREESTYLE ENDS HERE
     ;; DO NOT MODIFY
     popa
